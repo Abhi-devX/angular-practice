@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Practice - Day 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #dd0031 0%, #c3002f 100%);
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 6px 15px rgba(195, 0, 47, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+            border-left: 6px solid #dd0031;
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: #c3002f;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 12px;
+            background-color: #fce4ec;
+            padding: 10px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .completion-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 15px;
+            box-shadow: 0 3px 10px rgba(46, 125, 50, 0.1);
+        }
+        
+        .completion-badge i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .angular-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-top: 4px solid transparent;
+        }
+        
+        .feature-card:hover {
+            border-top-color: #dd0031;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card h3 {
+            color: #c3002f;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-card h3 i {
+            margin-right: 10px;
+            color: #dd0031;
+        }
+        
+        .feature-card p {
+            color: #555;
+            font-size: 0.95rem;
+        }
+        
+        .next-steps {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 40px;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .next-steps h3 {
+            color: #1976d2;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .next-steps ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .next-steps li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #ddd;
+            display: flex;
+            align-items: center;
+        }
+        
+        .next-steps li:last-child {
+            border-bottom: none;
+        }
+        
+        .next-steps li i {
+            margin-right: 12px;
+            color: #1976d2;
+            width: 24px;
+            text-align: center;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 25px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .angular-logo {
+            font-size: 2.5rem;
+            color: #dd0031;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .content-card {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .angular-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Angular Practice</h1>
+            <p class="subtitle">Building modern web applications with Angular framework</p>
+        </header>
+        
+        <main>
+            <div class="content-card">
+                <h2><i class="fas fa-check-circle"></i> Day 1 Practice Completed</h2>
+                <p>Congratulations on completing your first day of Angular practice! You've taken an important step in mastering one of the most powerful front-end frameworks.</p>
+                <p>Today you've set up your development environment, created your first Angular component, and understood the basic structure of an Angular application.</p>
+                
+                <div class="completion-badge">
+                    <i class="fas fa-trophy"></i> Milestone Achieved: Day 1 Completed
+                </div>
+                
+                <div class="angular-features">
+                    <div class="feature-card">
+                        <h3><i class="fas fa-cube"></i> Components</h3>
+                        <p>Angular applications are built with components that control portions of the UI. Each component has its own template, styles, and logic.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3><i class="fas fa-code"></i> TypeScript</h3>
+                        <p>Angular is built with TypeScript, which provides static typing, classes, and interfaces for more robust and maintainable code.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3><i class="fas fa-puzzle-piece"></i> Modularity</h3>
+                        <p>Angular's modular architecture helps organize code into cohesive blocks of functionality called NgModules.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="next-steps">
+                <h3>What to Practice Next</h3>
+                <ul>
+                    <li><i class="fas fa-arrow-right"></i> Create multiple components and learn about component communication</li>
+                    <li><i class="fas fa-arrow-right"></i> Practice data binding - interpolation, property binding, and event binding</li>
+                    <li><i class="fas fa-arrow-right"></i> Learn about Angular directives (ngIf, ngFor, ngSwitch)</li>
+                    <li><i class="fas fa-arrow-right"></i> Implement services and dependency injection</li>
+                    <li><i class="fas fa-arrow-right"></i> Explore Angular routing for navigation between views</li>
+                </ul>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="angular-logo">
+                <i class="fab fa-angular"></i>
+            </div>
+            <p>Angular Practice Journal | Day 1 Completed Successfully</p>
+            <p>Keep practicing and building amazing applications!</p>
+        </footer>
+    </div>
+</body>
+</html>
